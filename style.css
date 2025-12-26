@@ -1,28 +1,34 @@
+/* ১. মেইন বডি সেটআপ */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* হালকা গ্রে ব্যাকগ্রাউন্ড */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px; /* মোবাইলে যাতে সাইড থেকে লেগে না যায় */
 }
 
+/* ২. মেইন কন্টেইনার (সাদা বক্স) */
 .container {
     background-color: white;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* সুন্দর শ্যাডো */
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 350px; /* বক্সটি খুব বেশি চওড়া হবে না */
+    box-sizing: border-box;
 }
 
+/* ৩. টাইটেল ডিজাইন */
 h2 {
     margin-top: 0;
     margin-bottom: 5px;
     color: #2d3436;
-    letter-spacing: -0.5px;
+    font-size: 24px;
 }
 
 .subtitle {
@@ -32,67 +38,97 @@ h2 {
     margin-bottom: 25px;
 }
 
+/* ৪. ইনপুট লেবেল এবং বক্স */
+label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3436;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
 input[type="text"] {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
     border: 1px solid #dfe6e9;
-    border-radius: 6px;
+    border-radius: 8px;
     box-sizing: border-box;
-    outline: none;
     font-size: 14px;
+    outline: none;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
 }
 
 input[type="text"]:focus {
     border-color: #0984e3;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
 }
 
+/* ৫. জেনারেট বাটন */
 button {
     width: 100%;
     padding: 12px;
+    margin-top: 20px;
     background-color: #0984e3;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 15px;
     transition: background 0.3s;
 }
 
-button:hover { background-color: #74b9ff; }
-
-#qr-code {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
+button:hover {
+    background-color: #74b9ff;
 }
 
+/* ৬. প্রিভিউ এরিয়া (খুবই গুরুত্বপূর্ণ) */
+#poster-area {
+    margin-top: 25px;
+    border: 1px dashed #b2bec3; /* ড্যাশ বর্ডার যাতে আলাদা বোঝা যায় */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    display: none; /* প্রথমে লুকানো থাকবে */
+}
+
+/* ক্যানভাস বা ছবি যাতে বক্সের বাইরে না যায় */
+#poster-area canvas, 
+#poster-area img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* কার্ডের নিচে শ্যাডো */
+}
+
+/* ৭. ডাউনলোড বাটন (সবুজ রঙের) */
 #download-btn {
     margin-top: 15px;
     background-color: #00b894;
 }
 
-#download-btn:hover { background-color: #55efc4; }
+#download-btn:hover {
+    background-color: #55efc4;
+}
 
+/* ৮. ফুটার */
 footer {
     margin-top: 30px;
     font-size: 13px;
     color: #b2bec3;
+    text-align: center;
 }
 
 footer a {
     color: #0984e3;
     text-decoration: none;
-
+    font-weight: 500;
 }
-/* এটি style.css এর একদম নিচে যোগ করুন */
 
-#qr-code canvas, 
-#qr-code img {
-    /* ইমেজ ১০০০ পিক্সেল হলেও স্ক্রিনে ছোট দেখাবে */
-    max-width: 100% !important;
-    height: auto !important;
-    border: 1px solid #ddd; /* হালকা বর্ডার যাতে সাদা অংশ বোঝা যায় */
-    border-radius: 5px;
+footer a:hover {
+    text-decoration: underline;
 }
