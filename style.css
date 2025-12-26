@@ -84,4 +84,15 @@ footer {
 footer a {
     color: #0984e3;
     text-decoration: none;
+
+}
+/* এটি style.css এর একদম নিচে যোগ করুন */
+
+#qr-code canvas, 
+#qr-code img {
+    /* ইমেজ ১০০০ পিক্সেল হলেও স্ক্রিনে ছোট দেখাবে */
+    max-width: 100% !important;
+    height: auto !important;
+    border: 1px solid #ddd; /* হালকা বর্ডার যাতে সাদা অংশ বোঝা যায় */
+    border-radius: 5px;
 }
