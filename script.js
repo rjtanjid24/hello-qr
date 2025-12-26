@@ -10,55 +10,57 @@ function generateQR() {
         return;
     }
 
-    // আগের QR মুছে ফেলা
+    // আগের কোড মুছে ফেলা
     qrContainer.innerHTML = "";
 
-    // কনফিগারেশন
+    // কনফিগারেশন আপডেট (High Quality & Quiet Zone)
     let options = {
         text: text,
-        width: 200,
-        height: 200,
+        
+        // ১. হাই কোয়ালিটি (আগে ২০০ ছিল, এখন ১০০০ দিলাম)
+        width: 1000,
+        height: 1000,
+        
         colorDark: "#000000",
         colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+        correctLevel: QRCode.CorrectLevel.H,
+        
+        // ২. এই অংশটি আপনার সমস্যার সমাধান করবে (সাদা বর্ডার)
+        quietZone: 60,         // চারপাশে ৬০ পিক্সেল সাদা জায়গা থাকবে
+        quietZoneColor: '#ffffff' // বর্ডারের রং সাদা
     };
 
-    // QR তৈরি করা
     try {
         qrcodeObj = new QRCode(qrContainer, options);
-        // বাটন দেখানো
         downloadBtn.style.display = "block";
     } catch (error) {
         console.error("Error generating QR:", error);
-        alert("Something went wrong. Please reload the page.");
+        alert("Something went wrong. Please reload.");
     }
 }
 
 function downloadQR() {
     const container = document.getElementById("qr-code");
-    // এখন আমরা চেক করব ক্যানভাস অথবা ইমেজ ট্যাগ আছে কিনা
     const canvas = container.querySelector("canvas");
     const img = container.querySelector("img");
     
     let url = null;
 
     if (canvas) {
-        // যদি ক্যানভাস মোডে থাকে
         url = canvas.toDataURL("image/png");
     } else if (img) {
-        // যদি ইমেজ মোডে থাকে
         url = img.src;
     }
 
     if (url) {
         const link = document.createElement("a");
-        // ইউনিক নাম দেওয়ার জন্য বর্তমান সময় যোগ করা হলো, যাতে ব্রাউজার কনফিউজড না হয়
-        link.download = "hello-qr-" + Date.now() + ".png";
+        // ফাইলের নাম
+        link.download = "hello-qr-hd-" + Date.now() + ".png";
         link.href = url;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     } else {
-        alert("No QR Code found to download! Please click Generate first.");
+        alert("Generate a QR code first!");
     }
 }
