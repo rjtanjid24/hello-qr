@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello QR - Simple Generator</title>
+    <title>Hello QR - QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/easyqrcodejs@4.5.0/dist/easy.qrcode.min.js"></script>
 </head>
@@ -11,15 +11,20 @@
 
     <div class="container">
         <h2>Hello QR</h2>
-        <p class="subtitle">Simple & Fast QR Code Generator</p>
+        <p class="subtitle">Create professional QR posters instantly</p>
         
-        <input type="text" id="qr-text" placeholder="Enter text or URL here..." />
+        <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#666;">SCAN ME</label>
+        <input type="text" id="qr-header" placeholder="SCAN ME" value="SCAN ME">
 
-        <button onclick="generateQR()">Generate QR Code</button>
+        <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#666;">QR Content</label>
+        <input type="text" id="qr-text" placeholder="Enter your text or URL..." />
 
-        <div id="qr-code"></div>
+        <button onclick="generatePoster()">Generate QR</button>
+
+        <div id="poster-area" style="margin-top:20px; border:1px solid #eee; padding:10px; display:none;">
+            </div>
         
-        <button id="download-btn" style="display:none;" onclick="downloadQR()">Save</button>
+        <button id="download-btn" style="display:none;" onclick="downloadPoster()">Save</button>
     </div>
 
     <footer>
